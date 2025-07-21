@@ -1,5 +1,6 @@
 import http from 'k6/http' // Importação de um módulo
 import { sleep, check } from 'k6' // Importação de uma função
+const postLogin = JSON.parse (open('../fixtures/postLogin.json')) // Chamar os dados do arquivo postLogin convertendo em um objeto Javascript
 
 // Configuração do teste
 export const options = {
@@ -19,10 +20,7 @@ export default function () {
   // Teste
   const url = 'http://localhost:3000/login'
 
-  const payload = JSON.stringify({
-    username: 'julio.lima',
-    senha: '123456',
-  })
+  const payload = JSON.stringify(postLogin)
 
   const params = {
     headers: {
